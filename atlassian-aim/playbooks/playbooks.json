@@ -1,0 +1,411 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "Sample - Atlassian IAM - 1.0.0",
+      "description": "Sample playbooks for \"Atlassian IAM\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": "/api/3/images/58c0b345-dad3-4709-ade4-e197caf8251b",
+      "uuid": "e514c9b8-0ce9-49d5-9f90-54b52c2f5a1c",
+      "id": 412,
+      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "createDate": 1632814803,
+      "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+      "modifyDate": 1632814803,
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Users",
+          "aliasName": null,
+          "tag": "#Atlassian IAM",
+          "description": "Get users from the directory based on the input parameters you have specified.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1632900187,
+          "collection": "/api/3/workflow_collections/e514c9b8-0ce9-49d5-9f90-54b52c2f5a1c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c4c212dd-2c89-49e8-949d-d5229d42b3c9",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Users",
+              "description": null,
+              "arguments": {
+                "name": "Atlassian IAM",
+                "config": "9d86f044-5e01-4bc1-a682-40967a8b90ea",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "atlassian-iam",
+                "operation": "get_users",
+                "operationTitle": "Get Users",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "668b8a0b-a4c1-4463-9b02-a32b84fed074",
+              "id": 12214
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "ffa31772-818f-4c1e-a29b-7b6d85e8a5bb",
+                "title": "Atlassian IAM: Get Users",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "c4c212dd-2c89-49e8-949d-d5229d42b3c9",
+              "id": 12213
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Users",
+              "targetStep": "/api/3/workflow_steps/668b8a0b-a4c1-4463-9b02-a32b84fed074",
+              "sourceStep": "/api/3/workflow_steps/c4c212dd-2c89-49e8-949d-d5229d42b3c9",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "3df498d9-7abf-450a-b7ec-7f2b574eca53"
+            }
+          ],
+          "priority": null,
+          "uuid": "372219c1-1e09-4b3d-a765-719b0f4a3a4f",
+          "recordTags": [
+            "Atlassian",
+            "atlassian-iam"
+          ],
+          "id": 4136,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1632814803,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1632900187,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Deactivate User",
+          "aliasName": null,
+          "tag": "#Atlassian IAM",
+          "description": "Deactivate a user by userId in Atlassian.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1632900088,
+          "collection": "/api/3/workflow_collections/e514c9b8-0ce9-49d5-9f90-54b52c2f5a1c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/84f2faf3-6099-4afd-8b7a-9f2a94431070",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Deactivate User",
+              "description": null,
+              "arguments": {
+                "name": "Atlassian IAM",
+                "config": "9d86f044-5e01-4bc1-a682-40967a8b90ea",
+                "params": {
+                  "userId": "demouser123"
+                },
+                "version": "1.0.0",
+                "connector": "atlassian-iam",
+                "operation": "deactivate_user",
+                "operationTitle": "Deactivate User",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "3e5e6e49-dbc8-4fba-b3d3-04f0fb0f95fd",
+              "id": 12218
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "e11d34b9-27b1-4dc5-9d6c-490a2720f415",
+                "title": "Atlassian IAM: Deactivate User",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "84f2faf3-6099-4afd-8b7a-9f2a94431070",
+              "id": 12217
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Deactivate User",
+              "targetStep": "/api/3/workflow_steps/3e5e6e49-dbc8-4fba-b3d3-04f0fb0f95fd",
+              "sourceStep": "/api/3/workflow_steps/84f2faf3-6099-4afd-8b7a-9f2a94431070",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "79a512fa-0b83-475e-97cd-55c072f76008"
+            }
+          ],
+          "priority": null,
+          "uuid": "b93a3d40-0f13-479a-b6cd-1e008973ae15",
+          "recordTags": [
+            "Atlassian",
+            "atlassian-iam"
+          ],
+          "id": 4138,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1632814803,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1632900090,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Create User",
+          "aliasName": null,
+          "tag": "#Atlassian IAM",
+          "description": "Create a user in a directory based on the input parameters you have specified.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1632900149,
+          "collection": "/api/3/workflow_collections/e514c9b8-0ce9-49d5-9f90-54b52c2f5a1c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/82e44051-0c5b-48ed-8cf3-f78edcde66c5",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Create User",
+              "description": null,
+              "arguments": {
+                "name": "Atlassian IAM",
+                "config": "9d86f044-5e01-4bc1-a682-40967a8b90ea",
+                "params": {
+                  "title": "",
+                  "active": true,
+                  "emails": "",
+                  "userName": "",
+                  "department": "",
+                  "organization": "",
+                  "custom_filter": "{\n  \"displayName\": \"demouser\",\n  \"nickName\": \"nickname\",\n  \"preferredLanguage\": \"language1\"\n}"
+                },
+                "version": "1.0.0",
+                "connector": "atlassian-iam",
+                "operation": "create_user",
+                "operationTitle": "Create User",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "37b7fa86-13e8-4977-931d-1f5eb5c477b4",
+              "id": 12212
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "6aa73b99-55dc-4257-b8b6-7832817e8c0c",
+                "title": "Atlassian IAM: Create User",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "82e44051-0c5b-48ed-8cf3-f78edcde66c5",
+              "id": 12211
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Create User",
+              "targetStep": "/api/3/workflow_steps/37b7fa86-13e8-4977-931d-1f5eb5c477b4",
+              "sourceStep": "/api/3/workflow_steps/82e44051-0c5b-48ed-8cf3-f78edcde66c5",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5fb124d1-2b1b-4c0e-aa88-a6f563a7921e"
+            }
+          ],
+          "priority": null,
+          "uuid": "e697b679-dbbd-435d-80cc-d69ec9241216",
+          "recordTags": [
+            "Atlassian",
+            "atlassian-iam"
+          ],
+          "id": 4135,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1632814803,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1632900287,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update User",
+          "aliasName": null,
+          "tag": "#Atlassian IAM",
+          "description": "Create a user in a directory based on the input parameters you have specified.",
+          "isActive": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1632900278,
+          "collection": "/api/3/workflow_collections/e514c9b8-0ce9-49d5-9f90-54b52c2f5a1c",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/732a816d-575d-4928-92ea-bfb45650daf4",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Update User",
+              "description": null,
+              "arguments": {
+                "name": "Atlassian IAM",
+                "config": "9d86f044-5e01-4bc1-a682-40967a8b90ea",
+                "params": {
+                  "title": "",
+                  "emails": "",
+                  "userId": "demouser123",
+                  "userName": "",
+                  "department": "",
+                  "organization": "",
+                  "custom_filter": "{\n  \"displayName\": \"demouser\",\n  \"nickName\": \"nickname\",\n  \"preferredLanguage\": \"language1\"\n}"
+                },
+                "version": "1.0.0",
+                "connector": "atlassian-iam",
+                "operation": "update_user",
+                "operationTitle": "Update User",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "200",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "665df31b-a1a2-4af8-8fbd-c4bfbdedcf9d",
+              "id": 12216
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "ccecb1c9-204a-4e24-8e5e-da829a6256a0",
+                "title": "Atlassian IAM: Update User",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "732a816d-575d-4928-92ea-bfb45650daf4",
+              "id": 12215
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Update User",
+              "targetStep": "/api/3/workflow_steps/665df31b-a1a2-4af8-8fbd-c4bfbdedcf9d",
+              "sourceStep": "/api/3/workflow_steps/732a816d-575d-4928-92ea-bfb45650daf4",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "13b1574c-ca66-4ea4-b17b-0a5c7dd4a383"
+            }
+          ],
+          "priority": null,
+          "uuid": "f6df1824-febd-4c6f-af18-25000506114e",
+          "recordTags": [
+            "Atlassian",
+            "atlassian-iam"
+          ],
+          "id": 4137,
+          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
+          "createDate": 1632814803,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1632900278,
+          "owners": [],
+          "isPrivate": false
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Atlassian",
+    "atlassian-iam"
+  ]
+}
