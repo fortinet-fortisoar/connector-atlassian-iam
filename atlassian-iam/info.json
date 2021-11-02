@@ -9,7 +9,7 @@
   "category": "Data Enrichment and Threat Intelligence",
   "icon_small_name": "Atlassian_IAM_small.png",
   "icon_large_name": "Atlassian_IAM_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/atlassian-iam/189/atlassian-iam-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -29,7 +29,7 @@
         "type": "text",
         "name": "access_token",
         "value": "",
-        "description": "Access Token configured for your account to access the Atlassian server and perform the automated operations."
+        "description": "Access Token configured for your account to access the Atlassian APIs and perform the automated operations."
       },
       {
         "title": "Directory ID",
@@ -39,7 +39,7 @@
         "type": "text",
         "name": "directoryId",
         "value": "",
-        "description": "Directory ID configured for your account to access the Atlassian server and perform the automated operations."
+        "description": "ID of the directory ID configured for your account to use the Atlassian APIs and perform the automated operations. Note: This is the directory in which the Atlassian IAM connector perform operations such as creating users, updating users, etc. For example, if you want to create a user, then that user will be created in the directory whose ID you specify in this field."
       },
       {
         "title": "Verify SSL",
@@ -57,7 +57,7 @@
     {
       "operation": "create_user",
       "title": "Create User",
-      "description": "Create a user in a directory based on the input parameters you have specified.",
+      "description": "Creates a user in a directory that you have specified in the configuration parameters based on the input parameters such as username, email address, department, etc. you have specified.",
       "category": "investigation",
       "annotation": "create_user",
       "output_schema": {},
@@ -70,7 +70,7 @@
           "visible": true,
           "type": "text",
           "name": "userName",
-          "description": "Username of the user which you want to create in Atlassian."
+          "description": "Username to be assigned to the user that you want to create in Atlassian."
         },
         {
           "title": "Email Address",
@@ -79,7 +79,7 @@
           "visible": true,
           "type": "text",
           "name": "emails",
-          "description": "Email address of the user which you want to create in Atlassian."
+          "description": "Email address to be assigned to the user that you want to create in Atlassian."
         },
         {
           "title": "Title",
@@ -88,7 +88,7 @@
           "visible": true,
           "type": "text",
           "name": "title",
-          "description": "Title of the user which you want to create in Atlassian."
+          "description": "Title to be assigned to the user that you want to create in Atlassian."
         },
         {
           "title": "Department",
@@ -97,7 +97,7 @@
           "visible": true,
           "type": "text",
           "name": "department",
-          "description": "Department of the user which you want to create in Atlassian."
+          "description": "Department to be assigned to the user that you want to create in Atlassian."
         },
         {
           "title": "Organization",
@@ -106,7 +106,7 @@
           "visible": true,
           "type": "text",
           "name": "organization",
-          "description": "Organization of the user which you want to create in Atlassian."
+          "description": "Organization to be assigned to the user that you want to create in Atlassian."
         },
         {
           "title": "Active",
@@ -116,7 +116,7 @@
           "type": "checkbox",
           "name": "active",
           "value": true,
-          "description": "Organization of the user which you want to create in Atlassian."
+          "description": "Select this checkbox if you want the user to be created in Atlassian as an 'Active' user."
         },
         {
           "title": "Custom Filter",
@@ -135,7 +135,7 @@
     {
       "operation": "get_users",
       "title": "Get Users",
-      "description": "Get users from the directory based on the input parameters you have specified.",
+      "description": "Retrieves all users from the directory that you have specified in the configuration parameters.",
       "category": "investigation",
       "annotation": "get_users",
       "output_schema": {},
@@ -145,7 +145,7 @@
     {
       "operation": "update_user",
       "title": "Update User",
-      "description": "Create a user in a directory based on the input parameters you have specified.",
+      "description": "Updates a user in a directory that you have specified in the configuration parameters based on the user ID and other input parameters such as username, email address, department, etc. you have specified. ",
       "category": "investigation",
       "annotation": "update_user",
       "output_schema": {},
@@ -159,7 +159,7 @@
           "type": "text",
           "name": "userId",
           "value": true,
-          "description": "User ID of the user which you want to update in Atlassian."
+          "description": "ID of the user whose details you want to update in Atlassian."
         },
         {
           "title": "Username",
@@ -169,7 +169,7 @@
           "type": "text",
           "name": "userName",
           "value": true,
-          "description": "Username of the user which you want to update in Atlassian."
+          "description": "Username to be assigned to the user that you want to update in Atlassian."
         },
         {
           "title": "Email Address",
@@ -179,7 +179,7 @@
           "type": "text",
           "name": "emails",
           "value": true,
-          "description": "Email address of the user which you want to create in Atlassian."
+          "description": "Email address to be assigned to the user that you want to update in Atlassian."
         },
         {
           "title": "Title",
@@ -189,7 +189,7 @@
           "type": "text",
           "name": "title",
           "value": true,
-          "description": "Title of the user which you want to create in Atlassian."
+          "description": "Title to be assigned to the user that you want to update in Atlassian."
         },
         {
           "title": "Department",
@@ -199,7 +199,7 @@
           "type": "text",
           "name": "department",
           "value": true,
-          "description": "Department of the user which you want to create in Atlassian."
+          "description": "Department to be assigned to the user that you want to update in Atlassian."
         },
         {
           "title": "Organization",
@@ -209,7 +209,7 @@
           "type": "text",
           "name": "organization",
           "value": true,
-          "description": "Organization of the user which you want to create in Atlassian."
+          "description": "Organization to be assigned to the user that you want to update in Atlassian."
         },
         {
           "title": "Custom Filter",
@@ -221,14 +221,14 @@
           "value": "",
           "tooltip": "The query filter to update user. e.g. {\"displayName\": \"test\", \"nickName\",: \"nickname\", \"preferredLanguage\",: \"language\"}",
           "placeholder": "{\"displayName\": \"test\", \"nickName\",: \"nickname\", \"preferredLanguage\",: \"language\"}",
-          "description": "Query filter using which you want to update user information in Atlassian. For example, {\"displayName\": \"test\", \"nickName\",: \"nickname\", \"preferredLanguage\",: \"language\"}"
+          "description": "Query filter using which you want to update user in Atlassian. For example, {\"displayName\": \"test\", \"nickName\",: \"nickname\", \"preferredLanguage\",: \"language\"}"
         }
       ]
     },
     {
       "operation": "deactivate_user",
       "title": "Deactivate User",
-      "description": "Deactivate a user by userId in Atlassian.",
+      "description": "Deactivates a user in Atlassian based on the user ID you have specified.",
       "category": "investigation",
       "annotation": "deactivate_user",
       "output_schema": {},
@@ -242,7 +242,7 @@
           "type": "text",
           "name": "userId",
           "value": true,
-          "description": "User ID of the user which you want to deactivate in Atlassian."
+          "description": "ID of the user who requires to be deactivated in Atlassian."
         }
       ]
     }
